@@ -8,34 +8,10 @@ var PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
- // Functions -----------------------------------
-// function addRes(name, email, id, phone) {
-//   var name = ("#name").val()
-//   var email = ('#email').val()
-//   var id = ('#id').val()
-//   var phone = ('#phone').val()
-//
-//
-//   this.name = name;
-//   this.email = email;
-//   this.id = id;
-//   this.phone = phone;
-//   this.printStats = function() {
-//     console.log(this);
-//   }
-//
-
-// Arrays ---------------------------------------
   var waitlist = [];
 
   var tables = [];
 
-
-
-
-
-
-// Routes ---------------------------------------
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "./index.html"));
 });
@@ -69,7 +45,7 @@ app.post("/api/tables", function(req, res) {
         tables.push(newtable);
         res.json(true);
     } else {
-      waitlist.push(newtable);
+      waitlistData.push(newtable);
       res.json(false);
     }
     console.log(newtable);

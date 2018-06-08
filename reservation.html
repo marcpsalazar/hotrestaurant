@@ -29,13 +29,13 @@
                           <div class="col-md-6">
                               <div class="row">
                                   <div class="col-md-4">
-                      <a href="view.html"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+                      <a href="/view"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
                                     </div>
                         <div class="col-md-4">
-                                <a href="index.html"><button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-home"></span> Home</button></a>
+                                <a href="/"><button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-home"></span> Home</button></a>
                                                 </div>
                                     <div class="col-md-4">
-                      <a href="reservation.html"><button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> Make Reservation</button></a>
+                      <a href="/reservation"><button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> Make Reservation</button></a>
                                     </div>
                                  </div>
                             </div>
@@ -69,8 +69,8 @@
                                     </div>
                       
                                     <div class="form-group">
-                                      <label for="uniqueId">Unique ID</label>
-                                      <input type="text" class="form-control" id="uniqueId">
+                                      <label for="customerId">Unique ID</label>
+                                      <input type="text" class="form-control" id="customerId">
                                     </div>
                       
                                   </form>
@@ -93,7 +93,7 @@
                 name: $("#name").val().trim(),
                 phone: $("#phone").val().trim(),
                 email: $("#email").val().trim(),
-                uniqueId: $("#uniqueId").val().trim()
+                customerId: $("#customerId").val().trim()
               };
         
               // Question: What does this code do??
@@ -105,7 +105,7 @@
                   alert("Made Reservation");
                     } else if (false) {
                         console.log("reservation.html", data);
-                  alert("Made Reservation");
+                  alert("Could not make reservation");
                     }
                 });
             });

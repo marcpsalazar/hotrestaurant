@@ -28,13 +28,13 @@
                           <div class="col-md-6">
                               <div class="row">
                                   <div class="col-md-4">
-                      <a href="view.html"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+                      <a href="/view"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
                                     </div>
                     <div class="col-md-4">
-                            <a href="index.html"><button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-home"></span> Home</button></a>
+                            <a href="/"><button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-home"></span> Home</button></a>
                                             </div>
                                     <div class="col-md-4">
-                      <a href="reservation.html"><button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> Make Reservation</button></a>
+                      <a href="/reservation"><button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> Make Reservation</button></a>
                                     </div>
                                  </div>
                             </div>
@@ -47,15 +47,187 @@
                 <div class="panel-heading">
                   <h3 class="panel-title"><strong>Current Reservations</strong></h3>
                 </div>
-                <div class="panel-body" id="tableSelection">
-                  <div class="well" id="tableWell>
+                <div class="panel-body" id="reservationTable">
+                  <!-- <div class="well" id="tableWell">
                     <h2 id="showId"></h2>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
             </div>
             </div>
+
+            <div class="row">
+                    <div class="col-md-12">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"><strong>Wait List</strong></h3>
+                        </div>
+                        <div class="panel-body" id="waitlistSection">
+                          <!-- <div class="well" id="tableWell">
+                            <h2 id="showId"></h2>
+                          </div> -->
+                        </div>
+                      </div>
+        
+                    </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-md" id="clear"><span></span>Clear</button>
+
             </div>
+            
+            <script type="text/javascript">
+
+function addReservation() {
+
+    var currentURL = window.location.origin;
+
+$.ajax({url: currentURL + "/api/tables", method: "GET"})
+.then(function(open) {
+
+console.log(open.length);
+
+    for (var i = 0; i < open.length; i++) {
+        var tablePrint = $("<div>");
+                tablePrint.addClass("well");
+        tablePrint.attr("id", "placement");
+
+        $("#reservationTable").append(tablePrint);
+        
+        var tableNo = i + 1;
+
+            $("#placement").append("<h2><span class='label label-primary'>" + tableNo + "</span>  " + open[i].customerId + "</h2>");
+
+            console.log(tableNo + open[i].customerId);
+    }
+})
+
+}
+
+function addWaitlist() {
+
+    var currentURL = window.location.origin;
+
+    $.ajax({url: currentURL + "/api/waitlist", method: "GET"})
+.then(function(wait) {
+
+    console.log(wait.length);
+
+    for (var i = 0; i < wait.length; i++) {
+        var tableWait = $("<div>");
+            tableWait.addClass("well");
+        tableWait.attr("id", "waitPlacement");
+
+        $("#waitlistSection").append(tableWait);
+        
+        var tableNo = i + 1;
+
+            $("#waitPlacement").append("<h2><span class='label label-primary'>" + tableNo + "</span>  " + wait[i].customerId);
+
+            console.log(tableNo + wait[i].customerId);
+}
+})
+}
+
+addWaitlist();
+addReservation();
+
+// In this code, jQuery is used to "download" the data from our server
+// We then dynamically display this content in our table. This is very similar to the group projects you just completed.
+// It's also very similar to the NYT search application. In fact, I copied a ton of code from there.
+
+// function runTableQuery() {
+
+//   // Here we get the location of the root page.
+//   // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+//   var currentURL = window.location.origin;
+
+//   // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+//   $.ajax({ url: currentURL + "/api/tables", method: "GET" })
+//     .then(function(tableData) {
+
+//       // Loop through and display each of the customers
+//       for (var i = 0; i < tableData.length; i++) {
+
+//       // Create the HTML Well (Section) and Add the table content for each reserved table
+//         var tableSection = $("<div>");
+//         tableSection.addClass("well");
+//         tableSection.attr("id", "tableWell-" + i + 1);
+//         $("#tableSection").append(tableSection);
+
+//         var tableNumber = i + 1;
+
+
+//         // Then display the remaining fields in the HTML (Section Name, Date, URL)
+//         $("#tableWell-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " + tableData[i].customerId + "</h2>");
+
+       
+//       }
+//     });
+// }
+
+// function runWaitListQuery() {
+
+//   // Here we get the location of the root page.
+//   // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+//   var currentURL = window.location.origin;
+
+//   // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+//   $.ajax({ url: currentURL + "/api/waitlist", method: "GET" })
+//     .then(function(waitlistData) {
+
+//     // Here we are logging the URL so we have access to it for troubleshooting
+//       console.log("------------------------------------");
+//       console.log("URL: " + currentURL + "/api/waitlist");
+//       console.log("------------------------------------");
+
+//       // Here we then log the NYTData to console, where it will show up as an object.
+//       console.log(waitlistData);
+//       console.log("------------------------------------");
+
+//       // Loop through and display each of the customers
+//       for (var i = 0; i < waitlistData.length; i++) {
+
+//       // Create the HTML Well (Section) and Add the table content for each reserved table
+//         var waitlistSection = $("<div>");
+//         waitlistSection.addClass("well");
+//         waitlistSection.attr("id", "waitlistWell-" + i + 1);
+//         $("#waitlistSection").append(waitlistSection);
+
+//         var tableNumber = i + 1;
+
+//         // Then display the remaining fields in the HTML (Section Name, Date, URL)
+//         $("#waitlistWell-" + i + 1).append("<h2><span class='label label-primary'>" + tableNumber + "</span> | " + waitlistData[i].customerId + "</h2>");
+//       }
+//     });
+// }
+
+// // This function resets all of the data in our tables. This is intended to let you restart a demo.
+// function clearTable() {
+
+//   var currentURL = window.location.origin;
+//   $.ajax({ url: currentURL + "/api/clear", method: "POST" });
+
+// }
+
+// $("#clear").on("click", function() {
+//   alert("Clearing...");
+//   clearTable();
+
+//   // Refresh the page after data is cleared
+//   location.reload();
+
+// });
+
+
+// // Run Queries!
+// // ==========================================
+// runTableQuery();
+// runWaitListQuery();
+
+
+</script>
+            
 </body>
 </html>
