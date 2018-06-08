@@ -35,6 +35,10 @@ app.get("/api/waitlist", function(req, res) {
   return res.json(waitlist);
 });
 
+app.post("/api/clear", function(req, res) {
+  return res.json(clear.body);
+});
+
 // create reservation
 app.post("/api/tables", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
@@ -45,11 +49,11 @@ app.post("/api/tables", function(req, res) {
         tables.push(newtable);
         res.json(true);
     } else {
-      waitlistData.push(newtable);
+      waitlist.push(newtable);
       res.json(false);
     }
     console.log(newtable);
-    res.json(newtable);
+    
 });
 
 
