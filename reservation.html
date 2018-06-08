@@ -93,14 +93,20 @@
                 name: $("#name").val().trim(),
                 phone: $("#phone").val().trim(),
                 email: $("#email").val().trim(),
-                UniqueId: $("#UniqueId").val().trim()
+                uniqueId: $("#uniqueId").val().trim()
               };
         
               // Question: What does this code do??
-              $.post("/api/characters", newReservation)
+              $.post("/api/tables", newReservation)
                 .then(function(data) {
+                    console.log(data)
+                    if (true) {
                   console.log("reservation.html", data);
                   alert("Made Reservation");
+                    } else if (false) {
+                        console.log("reservation.html", data);
+                  alert("Made Reservation");
+                    }
                 });
             });
           </script>
