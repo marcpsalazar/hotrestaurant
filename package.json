@@ -1,0 +1,26 @@
+{
+  "name": "hotrestaurant",
+  "version": "1.0.0",
+  "description": "restaurant reservations app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcpsalazar/hotrestaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcpsalazar/hotrestaurant/issues"
+  },
+  "homepage": "https://github.com/marcpsalazar/hotrestaurant#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "npm": "^6.1.0",
+    "path": "^0.12.7"
+  }
+}
